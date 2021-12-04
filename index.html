@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+</br>
+   <h1 > Hello Bắc Cái </h1></br></br>
+
+
+    <h3>
+          Bói thẻ
+      </h3>  
+
+<div style="text-align:center">
+    <button id="random">Bói thẻ</button></br></br>
+
+    Số lần bói thẻ : <input type="text" id="solan" value="5" placeholder="Nhập số lần lắc">
+    
+</div>
+    <ul id="xuatthe">
+
+    </ul>
+</body>
+
+<style>
+    h3 ,h1 {
+        text-align:center;
+        color:red;
+        font-size:50px;
+    }
+
+    #xuatthe {
+        text-align:center;
+    }
+    #xuatthe li {
+        display: inline-block;
+        margin: 20px;
+    };
+</style>
+
+<script>
+    $(document).ready(function(){
+        var ar1 = [2,4,27,99];  // fix lại tỉ lệ
+        // var ar2 = ["thevang.jpg",
+        //             "thetim.jpg",
+        //             "thelam.jpg",
+        //             "thexanh.jpg",];  
+        var ar3 = [
+                    ["thevang.jpg","thevang1.jpg","thevang2.jpg" , "thevang3.jpg" , "thevang4.jpg"],
+                    ["thetim.jpg","thetim1.jpg","thetim2.jpg" , "thetim3.jpg" , "thetim4.jpg"],
+                    ["thelam.jpg","thelam1.jpg","thelam2.jpg" , "thelam3.jpg" , "thelam4.jpg"],
+                    ["thexanh.jpg","thexanh1.jpg","thexanh2.jpg" , "thexanh3.jpg" , "thexanh4.jpg"],
+                ];
+
+        var ar_thexam = ["thexam.jpg","thexam1.jpg","thexam2.jpg" , "thexam3.jpg" , "thexam4.jpg"]
+
+        $("#random").click(function(){
+            $("#xuatthe li").remove();
+            var solan = $('#solan').val();  // số random của khách
+   
+            for (let i = 0; i < solan; i++) {
+                var x = 0;
+                var y = 0;
+                x = Math.floor((Math.random() * 100)); 
+                y =  Math.floor((Math.random() * 100));
+             
+                if (x > y) { 
+                    for (let k = 0; k < ar1.length; k++) {
+                        if (y < x && x < (y + ar1[k])) {
+                            var img =  ar3[k][Math.floor(Math.random() * ar3[k].length)];
+                            // $("#xuatthe").append('<li><img src="' + ar2[k] + '" alt=""></li>');
+                            $("#xuatthe").append('<li><img src="' + img + '" alt=""></li>');
+                            break;
+                        } 
+                    } 
+                } else {
+                    var img_thexam =  ar_thexam[Math.floor(Math.random() * ar_thexam.length)];
+                    $("#xuatthe").append('<li><img src="' + img_thexam + '" alt=""></li>');
+                }
+             
+            }
+        });
+    });
+</script>
+
+</html>
